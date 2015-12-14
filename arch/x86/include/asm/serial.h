@@ -8,7 +8,14 @@
  * clock, since the 16550A is capable of handling a top speed of 1.5
  * megabits/second; but this requires the faster clock.
  */
+#ifdef CONFIG_GEN3_UART
+/*
+ * The Intel Media SOC Gen3 has a high freqency clock.
+*/
+#define BASE_BAUD ( 14745600 / 16 )
+#else
 #define BASE_BAUD ( 1843200 / 16 )
+#endif
 
 /* Standard COM flags (except for COM4, because of the 8514 problem) */
 #ifdef CONFIG_SERIAL_DETECT_IRQ
